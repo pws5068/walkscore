@@ -14,6 +14,9 @@ class MockClient
        \"snapped_lon\": -74.0055  \n\n\n\n}
     eos
   end
+  def in_parallel(&block)
+    block.call
+  end
 end
 
 describe WalkscoreApi::Walkscore do
@@ -24,6 +27,13 @@ describe WalkscoreApi::Walkscore do
   describe '.find(location, api_key)' do
     it 'returns an instance of WalkscoreApi::Walkscore' do
       WalkscoreApi::Walkscore.find({lat: 40.7143528 , long: -74.00597309999999}, API_KEY).should be_a(WalkscoreApi::Walkscore)
+    end
+  end
+
+  describe '.find([locations], api_key)' do
+    it 'returns an array of WalkscoreApi::Walkscore instances' do
+      locations = [{lat: 40.7143528 , long: -74.00597309999999}, {lat: 40.7143528 , long: -74.00597309999999}]
+      WalkscoreApi::Walkscore.find_all(locations, API_KEY)[1].should be_a(WalkscoreApi::Walkscore)
     end
   end
 end

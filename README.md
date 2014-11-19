@@ -28,6 +28,9 @@ That's it!  You're response will be a Walkscore object where you have access to 
 + ws_link
 + Contributing
 
+### If an array of locations is passed, the response will be an array of Walkscore objects in the order they were requested
+`WalkscoreApi::Walkscore.find([{lat: 40.7143 , long: -74.0059 },{lat: 37.7833, long: -122.4167}], API_KEY)`
+
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
